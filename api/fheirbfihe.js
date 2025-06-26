@@ -1,6 +1,6 @@
 export default function handler(req, res) {
   const key = req.query.key;
-  const allowedKey = "my-secret-key";
+  const allowedKey = "secret-key";
 
   if (key !== allowedKey) {
     res.status(403).send("-- unauthorized");
@@ -8,8 +8,7 @@ export default function handler(req, res) {
   }
 
   const lua = `
-print("Hello from Vercel API")
--- Your Lua script here
+print("Hello World")
   `.trim();
 
   res.setHeader("Content-Type", "text/plain");
