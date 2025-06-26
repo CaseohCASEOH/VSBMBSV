@@ -1,14 +1,14 @@
 export default function handler(req, res) {
   const key = req.query.key;
-  const allowedKey = "secret-key";
+  const realKey = "secret-key";
 
-  if (key !== allowedKey) {
-    res.status(403).send("-- unauthorized");
-    return;
+  if (key !== realKey) {
+    res.setHeader("Content-Type", "text/plain");
+    return res.status(403).send("-- unauthorized");
   }
 
   const lua = `
-print("Hello World")
+print("success")
   `.trim();
 
   res.setHeader("Content-Type", "text/plain");
