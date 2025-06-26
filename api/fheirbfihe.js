@@ -36,17 +36,34 @@ export default function handler(req, res) {
       margin-bottom: 0.2em;
     }
     p {
-      color: #999;
-      font-size: 1.1em;
+      color: #ccc;
+      font-size: 1.2em;
+    }
+    #countdown {
+      font-weight: bold;
+      color: #fff;
     }
   </style>
   <script>
-    setTimeout(() => window.close(), 5000);
+    let seconds = 5;
+    const countdownEl = () => document.getElementById("countdown");
+
+    const updateCountdown = () => {
+      if (seconds <= 0) {
+        window.location.href = "https://abaui-community.vercel.app";
+      } else {
+        countdownEl().innerText = seconds;
+        seconds--;
+        setTimeout(updateCountdown, 1000);
+      }
+    };
+
+    window.onload = updateCountdown;
   </script>
 </head>
 <body>
   <h1>🚫 Unauthorized</h1>
-  <p>This tab will close in 5 seconds.</p>
+  <p>Redirecting in <span id="countdown">5</span> seconds...</p>
 </body>
 </html>
     `.trim();
