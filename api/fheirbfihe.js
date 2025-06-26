@@ -1,17 +1,17 @@
 export default function handler(req, res) {
-  const key = req.headers['x-api-key'] || req.query.key;
-
-  const allowedKey = 'my-secret-key';
+  const key = req.query.key;
+  const allowedKey = "my-secret-key";
 
   if (key !== allowedKey) {
-    res.status(403).send('-- unauthorized');
+    res.status(403).send("-- unauthorized");
     return;
   }
 
-  const script = `
-    print("success")
-  `;
+  const lua = `
+print("Hello from Vercel API")
+-- Your Lua script here
+  `.trim();
 
-  res.setHeader('Content-Type', 'text/plain');
-  res.status(200).send(script);
+  res.setHeader("Content-Type", "text/plain");
+  res.status(200).send(lua);
 }
