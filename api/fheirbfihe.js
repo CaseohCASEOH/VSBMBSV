@@ -8,8 +8,7 @@ export default function handler(req, res) {
   }
 
   const lua = `
-print("Hello from Vercel API")
--- Your Lua script here
+print("Hello World")
   `.trim();
 
   res.setHeader("Content-Type", "text/plain");
